@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/auth_nav"
+    app:startDestination="@id/loginFragment">
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.jordiortuno.cleanmvvm.framework.ui.auth.login.LoginFragment"
+        android:label="login_fragment"
+        tools:layout="@layout/login_fragment" >
+        <action
+            android:id="@+id/to_registerFragment"
+            app:destination="@id/registerFragment" />
+        <action
+            android:id="@+id/to_resetPasswordFragment"
+            app:destination="@id/resetPasswordFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.jordiortuno.cleanmvvm.framework.ui.auth.register.RegisterFragment"
+        android:label="register_fragment"
+        tools:layout="@layout/register_fragment" />
+    <fragment
+        android:id="@+id/resetPasswordFragment"
+        android:name="com.jordiortuno.cleanmvvm.framework.ui.auth.resetPassword.ResetPasswordFragment"
+        android:label="reset_password_fragment"
+        tools:layout="@layout/reset_password_fragment" >
+        <action
+            android:id="@+id/to_verifyCodeFragment"
+            app:destination="@id/verifyCodeFragment" />
+    </fragment>
+    <action
+        android:id="@+id/global_loginFragment"
+        app:destination="@id/loginFragment"
+        app:popUpTo="@+id/auth_nav"
+        app:popUpToInclusive="true"/>
+    <fragment
+        android:id="@+id/verifyCodeFragment"
+        android:name="com.jordiortuno.cleanmvvm.framework.ui.auth.resetPassword.VerifyCodeFragment"
+        android:label="verify_code_fragment"
+        tools:layout="@layout/verify_code_fragment" >
+        <action
+            android:id="@+id/to_changePasswordFragment"
+            app:destination="@id/changePasswordFragment" />
+        <argument
+            android:name="email"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/changePasswordFragment"
+        android:name="com.jordiortuno.cleanmvvm.framework.ui.auth.resetPassword.ChangePasswordFragment"
+        android:label="change_password_fragment"
+        tools:layout="@layout/change_password_fragment" >
+        <action
+            android:id="@+id/to_passwordChangedFragment"
+            app:destination="@id/passwordChangedFragment" />
+        <argument
+            android:name="email"
+            app:argType="string" />
+        <argument
+            android:name="token"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/passwordChangedFragment"
+        android:name="com.jordiortuno.cleanmvvm.framework.ui.auth.resetPassword.PasswordChangedFragment"
+        android:label="password_changed_fragment"
+        tools:layout="@layout/password_changed_fragment" />
+    <action android:id="@+id/global_verifyCodeFragment" app:destination="@id/verifyCodeFragment" />
+</navigation>
